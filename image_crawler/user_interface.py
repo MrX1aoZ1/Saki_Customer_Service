@@ -284,3 +284,6 @@ else:
     if __name__ == "__main__":
         ui = ChatUI()
         asyncio.run(ui.run())
+
+shutil.rmtree("test_output", ignore_errors=True)
+os.makedirs("test_output", exist_ok=True)
