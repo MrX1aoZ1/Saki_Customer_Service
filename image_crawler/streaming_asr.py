@@ -7,10 +7,10 @@ import threading
 from google.cloud import speech
 import pyaudio
 
-# 设置Google Cloud Speech API的凭证文件路径
+# Credensial of Google Cloud API Speech-To-Text
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./SpeechToText.json"
 
-# 音频采样率和分块大小
+# Audio sampling rate and chunk size
 RATE = 16000
 CHUNK = int(RATE / 10)  # 100ms
 
@@ -62,7 +62,7 @@ class MicrophoneStream:
             yield b''.join(data)
 
 def listen_print_loop(responses, stream, stop_event, ui_callback=None):
-    final_scripts = []
+    final_scripts = [' ']
     num_chars_printed = 0
 
     responses_queue = queue.Queue()
@@ -103,8 +103,10 @@ def listen_print_loop(responses, stream, stop_event, ui_callback=None):
                 if ui_callback:
                     ui_callback(transcript, False)
             else:
+                transcript = transcript.lstrip() + overwrite_chars + " "
+                transcript = transcript[0].upper() + transcript[1:]
                 final_scripts.append(transcript)
-                # print(transcript + overwrite_chars)
+                print(transcript)
                 num_chars_printed = 0
                 if ui_callback:
                     ui_callback(transcript, True)
@@ -147,7 +149,7 @@ def recognize_speech(stop_event, normal_mode, ui_callback=None):
 def main():
     print("Starting AI voice assistant")
     stop_event = threading.Event()
-    transcription = recognize_speech(stop_event)
+    transcription = recognize_speech(stop_event, normal_mode=True)
 
 if __name__ == "__main__":
     main()
