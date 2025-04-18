@@ -73,7 +73,7 @@ def retrieve_mujica_srcs():
     return img_srcs
 
 def retrieve_mygo_srcs():
-    PATH = r"C:/Users/user/PycharmProjects/pythonProject/image_crawler/chrome_driver/chromedriver.exe"
+    PATH = r"./chrome_driver/chromedriver.exe"
     print("___", PATH, "___")
     driver = webdriver.Chrome()
     driver.get("https://mygo.miyago9267.com/")
