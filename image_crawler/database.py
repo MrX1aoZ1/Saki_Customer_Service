@@ -73,7 +73,7 @@ def create_db(collection, embedder, collection_names):
             metadatas.append(document.metadata)  # Metadata
             ids.append(collection_name+str(idx))  # Unique ID for each document
 
-    if True:
+    if True: #debugging, wrote by AI
         for doc in documents:
             assert isinstance(doc, str), f"Document is not a string: {doc}"
 
