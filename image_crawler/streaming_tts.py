@@ -42,13 +42,12 @@ class StreamingTTS:
         )
         
         """Initialize the queue"""
-        self.text_queue = queue.Queue()          # Queue for text
-        self.file_queue = queue.Queue()          # Queue for saving MP3 files in to output directory
-        self.mp3_filename_queue = queue.Queue()  # Queue for obtaining the MP3 files from output directory and play it
+        self.text_queue = queue.Queue()          # Queue for text chunk from LLM
+        self.mp3_filename_queue = queue.Queue()  # Queue for playing MP3 files
 
     def split_sentences(self, text):
         """Split the sentence with punctuation"""
-        return re.split(r'(?<=[.,!?。！，、？]) ?', text)
+        return re.split(r'(?<=[。！？!?\.\,])[ \n]+(?=[^\s])', text)
     
     def filter_punctuation(self, text):
         """Skip the symbols that is not Chinese, English, number"""
@@ -89,21 +88,13 @@ class StreamingTTS:
                     self.file_counter += 1
                     
                     # Queuing
-                    self.file_queue.put((filename, response.audio_content))
-                    
-            except queue.Empty:
-                continue
+                    filepath = os.path.join(self.output_dir, filename)
+                    with open(filepath, "wb") as f:
+                        f.write(response.audio_content)
 
-    def _file_writer(self):
-        """Audio Saving thread: Continuously writing .mp3 files into test_output"""
-        while self.running or not self.file_queue.empty():
-            try:
-                filename, content = self.file_queue.get(timeout=1)
-                filepath = os.path.join(self.output_dir, filename)
-                with open(filepath, "wb") as f:
-                    f.write(content)
-                self.file_queue.task_done()
-                self.mp3_filename_queue.put(filepath)  # Push the saved MP3 files into the audio-to-be-play queue
+                    # Push the saved MP3 files into the audio-to-be-play queue
+                    self.mp3_filename_queue.put(filepath)  
+
             except queue.Empty:
                 continue
 
@@ -130,10 +121,8 @@ class StreamingTTS:
     def start_stream(self):  
         self.running = True             
         self.tts_thread = threading.Thread(target=self._tts_worker)
-        self.writer_thread = threading.Thread(target=self._file_writer)
         self.player_thread = threading.Thread(target=self._audio_player)
         self.tts_thread.start()
-        self.writer_thread.start()
         self.player_thread.start()
 
     def add_text(self, text):
@@ -145,21 +134,8 @@ class StreamingTTS:
         
         # Wait for every thread to finish
         self.tts_thread.join()
-        self.writer_thread.join()
         self.player_thread.join()
 
-        # Save the remaining processed files to the output directory
-        while not self.file_queue.empty():
-            filename, content = self.file_queue.get()
-            filepath = os.path.join(self.output_dir, filename)
-            with open(filepath, "wb") as f:
-                f.write(content)
-            self.mp3_filename_queue.put(filepath)
-
-        # Play the remaining audio files
-        while not self.mp3_filename_queue.empty():
-            filepath = self.mp3_filename_queue.get()
-            playaudio(filepath)
 
 def main():
     """A random paragraph copied from the internet for testing"""
@@ -170,6 +146,11 @@ def main():
         "必須在其後括注資料來源。", "至於括號內的內容，",
         "APA格式並不會因文獻資料的媒體形式不同而有所改變，", "詳情可見後續說明。"
     ]
+
+    # Another paragraph for testing
+    # test_sentences = [
+    #     "The sun dipped below the horizon, casting hues of amber and violet across the sky as a gentle breeze rustled the leaves of the ancient oak tree. Nearby, a squirrel scampered up its trunk, pausing to nibble on an acorn before darting into the shadows. In the distance, the faint hum of cicadas blended with the rhythmic chirping of crickets, creating a symphony of twilight sounds. A lone kayak drifted lazily down the river, its occupant lost in thought, trailing fingertips in the cool water. Along the bank, wildflowers swayed—daisies, goldenrod, and purple asters—painting the meadow in bursts of color. Suddenly, a heron took flight, its wings slicing through the air with graceful precision, vanishing into the mist that began to rise from the water’s surface. The aroma of pine and damp earth lingered, a reminder of the afternoon’s brief rain shower. Somewhere in the woods, an owl hooted, signaling the shift from day to night. Stars emerged one by one, flickering like distant lanterns, while the moon ascended, casting a silvery glow over the landscape. A fox trotted cautiously through the underbrush, its eyes gleaming in the dim light, searching for prey. The world seemed to hold its breath, suspended in the quiet magic of dusk. Yet, even as darkness settled, life thrived—unseen creatures stirring, nocturnal blooms unfurling, and the wind carrying whispers of stories untold. It was a moment both fleeting and eternal, a snapshot of nature’s quiet resilience. Meanwhile, in a cottage nestled at the forest’s edge, a light flickered in the window, smoke curling from the chimney as someone inside hummed an old folk tune, oblivious to the owl’s watchful gaze or the fox’s stealthy hunt. Time moved differently here, unbound by clocks or calendars, governed only by the rhythms of the earth."
+    # ]
     
     tts = StreamingTTS(normal_mode=False)
     
