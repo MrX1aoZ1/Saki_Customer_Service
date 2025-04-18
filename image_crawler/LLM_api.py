@@ -6,8 +6,8 @@ import re
 class DeepSeekLLM:
     def __init__(self, normal_mode):
         # Initialize the OpenAI API client
-        openai.api_base = 'https://tbnx.plus7.plus/v1'
-        openai.api_key = 'sk-rm1AGno4UW48eG2WBZtirTNC7fOhbSe2DzEdhQrTZGzC9vfD'
+        openai.api_base = ''  # For filling the testing api_base
+        openai.api_key = ''   # For filling the testing api_key
         # change system prompt to user prompt
 
         self.normal_mode = normal_mode
