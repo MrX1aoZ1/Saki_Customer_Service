@@ -130,7 +130,7 @@ async def download_all_mujica_images():
         description, url = url.split(" | ")
         tasks.append(download_an_image(url, description, origin="Ave_Mujica"))
 
-    _ = await asyncio.gather(*tasks[900:1200])
+    _ = await asyncio.gather(*tasks)
 
 async def download_all_mygo_images():
     srcs_path = "MyGo/img_srcs.txt"
@@ -141,7 +141,8 @@ async def download_all_mygo_images():
         description, url = url.split(" | ")
         tasks.append(download_an_image(url, description, origin="MyGo"))
 
-    _ = await asyncio.gather(*tasks[0:400])
+    _ = await asyncio.gather(*tasks)
+    
 async def download_an_image(url, description, origin="Ave_Mujica"):
     url = url.replace("\n", "")
     async with httpx.AsyncClient() as client:
