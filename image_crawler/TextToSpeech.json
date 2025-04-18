@@ -1,13 +1,13 @@
 {
-  "type": "service_account",
-  "project_id": "vivid-willow-456507-p7",
-  "private_key_id": "fb8b68f7e85753cd206c943e9c9b9a5471ba348f",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC8DWorRyNQH7cn\nKuqbAGHykixV0GlyIzZ2iaX9K58jAfJwMkARtSaa6pR9Jo4yK/7XHFKZpQynXPSv\n5y2qDbUDTNB8V/t2hRR37BL+sjCqmPDF5xGenNAMrRSbrm+CfK74nHHBQAtla9T7\nYYdgQW9yqhPQd67ZZ52LH4J2mQGR6mi+gBULG4MFxgmyP0aT6UasAklIQVx4FdHI\nNxj/U6oL32O6tfaTlR/eYSbBe+JvslveN3JWEGbsh3fZoBhYXD3VMU99U4eJNjEy\nLkeZu7FIMlwZIhVlBv3ucH1ikj6UcQ2BC6xwsRsAbfBEz9ovkWy9cxrn7GdIylKH\n3oz0/+cBAgMBAAECggEABK0Gdxqk6RPNzn1zoYynEtSRwcU9rvjrTHOgHwk98u1U\nJ3gnZc1R3zuemzVJhzu28ac2klOTWsi93I8YcIRYXDN1cmcPZY857uCtyPuaKE7G\n21vjUTTj2zHVS6jw5L8oDF5a+X+3vNMLY+AFIUaFQHYUSaxlKoqYFS7QlBV6P5QY\nMqMSStbsjEEfG+4fVY9KWcs08ql3sp9hAKxjB+uizbmTQpkNDIUsLN7a9M3MKOus\nHxsonUomCcXLAyFW3c5OehZ8qLG4Ifp4ckTvEZfhR82ltrKRbNY3PjM7JI9U6Uk1\nZr+d6otiFNseOu6oVdWTg5m4koEeXe8O7ZU2tnXy8QKBgQDew/dvmbcN6wNTNFOX\nnJm8VcsbEutU8QNzuA8xqf5XvNVrwA0+I3CVXLPLi0EAvhh3uzbK91u6xOhX/Jrk\n25cIlf6l6UkSZ4coZOdlFt3IH23zKRYcpDZMtSVie3RL5uO+mnqhopsdvqvUg3sH\ncUMap1P2OmQtWUmrUFKCTxyBUQKBgQDYG6id6o8eA93S45DH3ej6y6ME850oW0xb\nIQMZ10kXdVc0Om5V8krmqDNUIxfONXiynfxE/u7nc6dd2a+I0834iRakAxuyW9Kw\nCx+Ttni4erb0rjfNXrcXryPgA6njEUo8ysbwpIGZ0OHChBc/g9SdF6BRpBsS2/Ij\ncvJkqDMesQKBgCHZGPHGI4Bj4z9zRfhVfS6WwqO8fjGL5YBhyT08nT7rnGog5mI4\ntFSdn1wgLqJUQBeBRNQWPcPlQ4CLC2YWz54oXGcNSWMYg/rpShecH9rWm7hE1+1G\nLlH9fE64f3VBAf3mLxf8QyGD5UwHJlx9IzsbjbBuMuaJGJ6FN+RA7Q3hAoGBAKEm\nDtijHlG9hF5L/5xqp97MlyWMG/cKDagut8c/OGvbvkleAQTqBlx1tMDa4leMnBJl\nqMYybCf/oCBlwXWAq6jXYSCwiKi5vCQ2Rze469B1AZT3jPkB1fo9Sb00Pizqqbcn\nZq3vngz7LD4Gjed5AMSb55q5is7HYIp6nrHckzIhAoGAUBmpvJqCBPS4ybih2ZdV\nq/2LkgN2LwBct8NPJHn4qTRx12mPa1qivsEVyzo49WIJ20O5ofpue5gHWgRjouw8\nJ2cYWDrLXD81770tHjFBkr0Qj5qJi4A2U1fMrEfhjozOGszg1WZ8TtZ2uPIERMVc\nCo+lgzGlhBEgkawlffPMtZo=\n-----END PRIVATE KEY-----\n",
-  "client_email": "texttospeech@vivid-willow-456507-p7.iam.gserviceaccount.com",
-  "client_id": "110915089182338378029",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/texttospeech%40vivid-willow-456507-p7.iam.gserviceaccount.com",
-  "universe_domain": "googleapis.com"
+  "type": "Please fill in the below information before use",
+  "project_id": "",
+  "private_key_id": "",
+  "private_key": "",
+  "client_email": "",
+  "client_id": "",
+  "auth_uri": "",
+  "token_uri": "",
+  "auth_provider_x509_cert_url": "",
+  "client_x509_cert_url": "",
+  "universe_domain": ""
 }
