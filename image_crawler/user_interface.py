@@ -22,6 +22,8 @@ SAKI_COLOR = (119,153,204)
 FONT_SIZE = 20
 LINE_HEIGHT = 25
 SCROLLBAR_WIDTH = 20
+MIN_WINDOW_W = 700
+MIN_WINDOW_H = 400
 #IMAGE_PLACEHOLDER = "D:\\WallPaper\\GnK7KI5bYAASXR3.jpg"         
 
 # True: Normal Mode, False: Saki Mode; To switch between different mode
@@ -151,8 +153,10 @@ class ChatUI:
                     return
                 elif event.type == pygame.VIDEORESIZE:
                     self.window_size = (event.w, event.h)
-                    if (event.w < 700):
-                        self.window_size = (700, event.h)
+                    if (event.w < MIN_WINDOW_W):
+                        self.window_size = (MIN_WINDOW_W, event.h)
+                    if (event.h < MIN_WINDOW_H):
+                        self.window_size = (event.w, MIN_WINDOW_H)
                     self.screen = pygame.display.set_mode(self.window_size, pygame.RESIZABLE)
                     # Update the Control Panel and Chat Area
                     self.control_panel = pygame.Rect(0, 0, self.window_size[0], 100)
